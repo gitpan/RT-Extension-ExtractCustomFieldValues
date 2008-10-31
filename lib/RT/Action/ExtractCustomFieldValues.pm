@@ -2,8 +2,9 @@ package RT::Action::ExtractCustomFieldValues;
 require RT::Action::Generic;
 
 use strict;
-use vars qw/@ISA/;
-@ISA=qw(RT::Action::Generic);
+use warnings;
+
+use base qw(RT::Action::Generic);
 
 our $VERSION = 1.3;
 
@@ -47,19 +48,22 @@ sub Commit {
                                Match           => $MatchString,
                                FirstAttachment => $FirstAttachment );
 
-        if ($cf) {
-            ProcessCF( PostEdit    => $PostEdit,
-                       Ticket      => $Ticket,
-                       Options     => $Options,
-                       CustomField => $cf,
-                       Match       => $match );
+        my %processing_args = (
+            CustomField => $cf,
+            Match       => $match,
+
+            Ticket      => $Ticket,
+            Transaction => $Transaction,
+            Attachment  => $FirstAttachment,
+
+            PostEdit    => $PostEdit,
+            Options     => $Options,
+        );
+
+        if ( $cf ) {
+            ProcessCF( %processing_args );
         } else {
-            ProcessMatch( PostEdit    => $PostEdit, 
-                          Ticket      => $Ticket,
-                          Options     => $Options,
-                          Transaction => $Transaction,
-                          Attachment  => $FirstAttachment,
-                          Match       => $match );
+            ProcessMatch( %processing_args );
         }
     }
     return(1);
@@ -71,12 +75,16 @@ sub LoadCF {
     my $Queue = $args{Queue};
 
     $RT::Logger->debug("load cf $CustomFieldName");
-    my $cf = new RT::CustomField($RT::SystemUser);
-    my ($id,$msg) = $cf->LoadByNameAndQueue (Name=>"$CustomFieldName", Queue=>$Queue);
-    if (! $id) {
-      ($id,$msg) = $cf->LoadByNameAndQueue (Name=>"$CustomFieldName", Queue=>0);
+    my $cf = RT::CustomField->new( $RT::SystemUser );
+    $cf->LoadByNameAndQueue( Name => $CustomFieldName, Queue => $Queue );
+    $cf->LoadByNameAndQueue( Name => $CustomFieldName, Queue => 0 )
+        unless $cf->id;
+
+    if ( $cf->id ) {
+        $RT::Logger->debug("load cf done: ". $cf->id );
+    } else {
+        $RT::Logger->error("couldn't load cf $CustomFieldName");
     }
-    $RT::Logger->debug("load cf done: $id $msg");
 
     return $cf;
 
@@ -88,8 +96,10 @@ sub FindMatch {
     my $match = '';
     if ($args{Field} =~ /^body$/i) {
         $RT::Logger->debug("look for match in Body");
-        if ($args{FirstAttachment}->Content =~ /$args{Match}/m) {
-            $match = $1||$&;
+        if (   $args{FirstAttachment}->Content
+            && $args{FirstAttachment}->Content =~ /$args{Match}/m )
+        {
+            $match = $1 || $&;
             $RT::Logger->debug("matched value: $match");
         }
     } else {
@@ -113,20 +123,21 @@ sub ProcessCF {
         @values = split(',', $args{Match});
     }
 
-    foreach my $value (@values) {
-        if ($value && $args{PostEdit}) {
-            local $_ = $value; # backwards compatibility
+    foreach my $value (grep defined && length, @values) {
+        if ( $args{PostEdit} ) {
+            local $@;
             eval($args{PostEdit});
+            $RT::Logger->error("$@") if $@;
             $RT::Logger->debug("transformed ($args{PostEdit}) value: $value");
         }
-        if ($value) {
-            $RT::Logger->debug("found value for cf: $value");
-            my ($id,$msg) = $args{Ticket}->AddCustomFieldValue
-                                             ( Field => $args{CustomField}, 
-                                               Value => $value , 
-                                               RecordTransaction => $args{Options} =~ /q/ ? 0 : 1);
-            $RT::Logger->info("CustomFieldValue (".$args{CustomField}->Name.",$value) added: $id $msg");
-        }
+        next unless defined $value && length $value;
+
+        $RT::Logger->debug("found value for cf: $value");
+        my ($id,$msg) = $args{Ticket}->AddCustomFieldValue
+                                         ( Field => $args{CustomField}, 
+                                           Value => $value , 
+                                           RecordTransaction => $args{Options} =~ /q/ ? 0 : 1);
+        $RT::Logger->info("CustomFieldValue (".$args{CustomField}->Name.",$value) added: $id $msg");
     }
 }
 
@@ -138,7 +149,9 @@ sub ProcessMatch {
 
     if ($args{Match} && $args{PostEdit}) {
         local $_ = $args{Match}; # backwards compatibility
+        local $@;
         eval($args{PostEdit});
+        $RT::Logger->error("$@") if $@;
         $RT::Logger->debug("ran code $args{PostEdit} $@");
     }
 }
