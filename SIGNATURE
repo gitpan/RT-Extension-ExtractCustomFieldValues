@@ -14,12 +14,12 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 092ea5763f1dd906790b931f60e6b0f130b184f8 Changes
+SHA1 f209a86f6197a0881c0489ff45c2813629b6b354 Changes
 SHA1 0c6518956ed0ca1fd45328c264e6207687a30c8e MANIFEST
-SHA1 c6310ca1359741f6048df60494c531ce019758f7 META.yml
+SHA1 d56f23bf081cb9295447c34daa1741f0ff38b11f META.yml
 SHA1 478a1a8f886df5109348d6c3842f48f8b748e8b4 Makefile.PL
 SHA1 85cee6499adfe114e6f63b741b09f05f2f219da4 README
-SHA1 64d21b364c077f6d55158a7e58ad1837f69fe1de etc/initialdata
+SHA1 c4b0a999b39cb8abadf41680e7f6689378c239d0 etc/initialdata
 SHA1 8b836389e4bc170eb8d19b7296b2f4978ac36136 inc/Module/Install.pm
 SHA1 85b32a1d5f215d99f411c3dd6113b537fcd5c57d inc/Module/Install/Base.pm
 SHA1 fde745e180861c7c0ba3ee5a767cafdbdb1d3ebd inc/Module/Install/Can.pm
@@ -31,11 +31,11 @@ SHA1 449e998bb26b566ce352948ae08906f3448ebcba inc/Module/Install/RTx/Factory.pm
 SHA1 85e6b1cf5b7ca81bfb469a99389fa947d4b8a08e inc/Module/Install/Win32.pm
 SHA1 d32dff9f0d2f02023ca6d79a48d62fd855916351 inc/Module/Install/WriteAll.pm
 SHA1 5accc61f87b7134511a4a7777c019851037aefeb lib/RT/Action/ExtractCustomFieldValues.pm
-SHA1 08e133d7092a3c772a332bd39b4c478c2e35d407 lib/RT/Extension/ExtractCustomFieldValues.pm
+SHA1 44d28e55de34496a2eefaa9d4113646fe7899cd2 lib/RT/Extension/ExtractCustomFieldValues.pm
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v2.0.9 (GNU/Linux)
 
-iEYEARECAAYFAklG164ACgkQMflWJZZAbqCQ1ACghHrwHU8slyiiKPzZvIIeiMvt
-XrgAoI3i2nR9HV4v/GUuABrx/rS3SiJ7
-=+RzK
+iEYEARECAAYFAklJZYkACgkQMflWJZZAbqDXswCeMLaQ1KxbmkZLSY/J60EpfjHk
+f+wAn2bnJQzeS2Fy1WepwDQVMX33Ozex
+=p3aW
 -----END PGP SIGNATURE-----
