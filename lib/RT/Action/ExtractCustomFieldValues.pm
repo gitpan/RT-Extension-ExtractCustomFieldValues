@@ -54,10 +54,9 @@ sub Commit {
     return 1 unless $self->FirstAttachment;
 
     for my $config ($self->TemplateConfig) {
-        require YAML;
-        $RT::Logger->debug("Looking to extract:" . YAML::Dump($config));
-        
         my %config = %{$config};
+        $RT::Logger->debug( "Looking to extract: "
+                . join( " ", map {"$_=$config{$_}"} sort keys %config ) );
 
         if ( $config{Options} =~ /\*/ ) {
             $self->FindContent(
@@ -116,7 +115,7 @@ sub LoadCF {
     $cfs->RowsPerPage(1);
 
     my $cf = $cfs->First;
-    if ( $cf->id ) {
+    if ( $cf && $cf->id ) {
         $RT::Logger->debug( "Found CF id " . $cf->id );
     } elsif ( not $args{Quiet} ) {
         $RT::Logger->error( "Couldn't load CF $CustomFieldName!");
