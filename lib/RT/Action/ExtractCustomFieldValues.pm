@@ -63,16 +63,19 @@ sub Commit {
                 %config,
                 Callback    => sub {
                     my $content = shift;
+                    my $found = 0;
                     while ( $content =~ /$config{Match}/mg ) {
                         my ( $cf, $value ) = ( $1, $2 );
                         $cf = $self->LoadCF( Name => $cf, Quiet => 1 );
                         next unless $cf;
+                        $found++;
                         $self->ProcessCF(
                             %config,
                             CustomField => $cf,
                             Value       => $value
                         );
                     }
+                    return $found;
                 },
             );
         } else {
@@ -84,12 +87,13 @@ sub Commit {
                 %config,
                 Callback    => sub {
                     my $content = shift;
-                    my $value = $1 || $& if $content =~ /$config{Match}/m;
+                    return 0 unless $content =~ /$config{Match}/m;
                     $self->ProcessCF(
                         %config,
                         CustomField => $cf,
-                        Value       => $value,
+                        Value       => $1 || $&,
                     );
+                    return 1;
                 }
             );
         }
@@ -132,19 +136,31 @@ sub FindContent {
         my $LastContent  = '';
         my $AttachmentCount = 0;
 
-        while ( my $Message = $Attachments->Next ) {
+        my @list = @{ $Attachments->ItemsArrayRef };
+        while ( my $Message = shift @list ) {
             $AttachmentCount++;
             $RT::Logger->debug( "Looking at attachment $AttachmentCount, content-type "
                                     . $Message->ContentType );
-            next
-                unless $Message->ContentType
-                    =~ m!^(text/plain|message|text$)!i;
-            next unless $Message->Content;
-            next if $LastContent eq $Message->Content;
+            my $ct = $Message->ContentType;
+            unless ( $ct =~ m!^(text/plain|message|text$)!i ) {
+                # don't skip one attachment that is text/*
+                next if @list > 1 || $ct !~ m!^text/!;
+            }
+
+            my $content = $Message->Content;
+            next unless $content;
+            next if $LastContent eq $content;
             $RT::Logger->debug( "Examining content of body" );
-            $LastContent = $Message->Content;
-            $args{Callback}->( $Message->Content )
+            $LastContent = $content;
+            $args{Callback}->( $content );
         }
+    } elsif ( lc $args{Field} eq 'headers' ) {
+        my $attachment = $self->FirstAttachment;
+        $RT::Logger->debug( "Looking at the headers of the first attachment" );
+        my $content = $attachment->Headers;
+        return unless $content;
+        $RT::Logger->debug( "Examining content of headers" );
+        $args{Callback}->( $content );
     } else {
         my $attachment = $self->FirstAttachment;
         $RT::Logger->debug( "Looking at $args{Field} header of first attachment" );
