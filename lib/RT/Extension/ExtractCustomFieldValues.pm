@@ -9,7 +9,7 @@ RT::Extension::ExtractCustomFieldValues - extract CF values from email headers o
 
 =cut
 
-our $VERSION = '3.05';
+our $VERSION = '3.06_01';
 
 1;
 
@@ -24,12 +24,16 @@ to set values of custom fields.
     perl Makefile.PL
     make
     make install
-    make initdb # first time only
+    make initdb # first time only, not on upgrades
 
 When using this extension with RT 3.8, you will need to add
 extension to the Plugins configuration:
 
     Set( @Plugins, qw(... RT::Extension::ExtractCustomFieldValues) );
+
+If you are upgrading this extension from 3.05 or earlier, you will
+need to read the UPGRADING file after running make install to add 
+the new Scrip Action.
 
 =head1 USAGE
 
@@ -101,8 +105,8 @@ and maintained by Best Practical Solutions.
 
 =head1 BUGS
 
-Report bugs using http://rt.cpan.org service, discuss on RT's
-mailing lists, see also </SUPPORT>
+Report bugs using L<http://rt.cpan.org> service, discuss on RT's
+mailing lists, see also L</SUPPORT>
 
 =head1 SUPPORT
 
