@@ -14,9 +14,9 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 586b718968ac936de0e2eda42ec9cbb4d51c664f Changes
+SHA1 667e6028baff40b1173214e33f3bd73b3267c72d Changes
 SHA1 886f82820ddf770056b188d08630fcaec6733ef7 MANIFEST
-SHA1 1c5353ad226886f48d4c586ada7627e93f29e0fa META.yml
+SHA1 1e5339f376dc4f1526be7c9c4f3362b8b8d901c5 META.yml
 SHA1 c872016819c5e29879be2fedf8ae882369e05a16 Makefile.PL
 SHA1 78bd53f760d80840270520a6b38feebbac73d614 README
 SHA1 b71e9e490e7d57baa7685bc573b8fd2ad27eb2e6 UPGRADING
@@ -35,11 +35,11 @@ SHA1 e4196994fa75e98bdfa2be0bdeeffef66de88171 inc/Module/Install/Win32.pm
 SHA1 c3a6d0d5b84feb3280622e9599e86247d58b0d18 inc/Module/Install/WriteAll.pm
 SHA1 173305a0dcbd3456cc6d7f6fb6c67e3b00249797 lib/RT/Action/ExtractCustomFieldValues.pm
 SHA1 35bfa9e18fd95282b04a519b1b4702984e5f4fe8 lib/RT/Action/ExtractCustomFieldValuesWithCodeInTemplate.pm
-SHA1 5906af4b646c13691e0d2aa5b4e23e28649fd93b lib/RT/Extension/ExtractCustomFieldValues.pm
+SHA1 c5ab709c342589ce0e906281b924d973215174ff lib/RT/Extension/ExtractCustomFieldValues.pm
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.11 (GNU/Linux)
 
-iD8DBQFR+F/aHdv9ZfNcOAcRAv+EAJ0UHZpepadN1PMFyBZDiqgm8tFE5QCeL6hP
-2fUn8RMu8xtsM8t5/nZhVIo=
-=eB1F
+iD8DBQFR+H7mHdv9ZfNcOAcRAr83AJsFUoP8kjfhWhuG7xxuzKARqCoEFACfTJTm
+OLb5tL4Hec9dTd98fAjjh5E=
+=FHOY
 -----END PGP SIGNATURE-----
