@@ -14,13 +14,13 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 667e6028baff40b1173214e33f3bd73b3267c72d Changes
+SHA1 4c98fbd5e12edc22ff339857c94d2454c0d58642 Changes
 SHA1 886f82820ddf770056b188d08630fcaec6733ef7 MANIFEST
-SHA1 1e5339f376dc4f1526be7c9c4f3362b8b8d901c5 META.yml
+SHA1 015cfaa05ee3520a18eb001147f1e0c0c94297f6 META.yml
 SHA1 c872016819c5e29879be2fedf8ae882369e05a16 Makefile.PL
-SHA1 78bd53f760d80840270520a6b38feebbac73d614 README
+SHA1 2d07b9026c992089542b51b00bbef3480737686f README
 SHA1 b71e9e490e7d57baa7685bc573b8fd2ad27eb2e6 UPGRADING
-SHA1 6b6074089b3aff2ec783294c459d326c87026bd8 etc/initialdata
+SHA1 3e032a39cc99b6266fac77cc2ee73d1f2da6d298 etc/initialdata
 SHA1 3020b3efc6bc071b208d5f26391c44d7b7a42259 etc/upgrade/3.06/content
 SHA1 8a924add836b60fb23b25c8506d45945e02f42f4 inc/Module/Install.pm
 SHA1 2d0fad3bf255f8c1e7e1e34eafccc4f595603ddc inc/Module/Install/Base.pm
@@ -28,18 +28,18 @@ SHA1 f0e01fff7d73cd145fbf22331579918d4628ddb0 inc/Module/Install/Can.pm
 SHA1 7328966e4fda0c8451a6d3850704da0b84ac1540 inc/Module/Install/Fetch.pm
 SHA1 b62ca5e2d58fa66766ccf4d64574f9e1a2250b34 inc/Module/Install/Makefile.pm
 SHA1 1aa925be410bb3bfcd84a16985921f66073cc1d2 inc/Module/Install/Metadata.pm
-SHA1 5f63805513cf3214069df32f21457c674dda05cc inc/Module/Install/RTx.pm
-SHA1 ac48900ca998a08baa4b03997df0abbce9c8c48e inc/Module/Install/RTx/Factory.pm
-SHA1 dc94326a076aca41452c1d65bf52a255feeb9ef7 inc/Module/Install/ReadmeFromPod.pm
+SHA1 40df6f8d889b52eef379f04af6227f9302b23bf9 inc/Module/Install/RTx.pm
+SHA1 293967c09b20031d14fbe96d51a68b6e003a89c3 inc/Module/Install/RTx/Factory.pm
+SHA1 79f5b4199f622e8b05aac266b0c39f6a85bb303f inc/Module/Install/ReadmeFromPod.pm
 SHA1 e4196994fa75e98bdfa2be0bdeeffef66de88171 inc/Module/Install/Win32.pm
 SHA1 c3a6d0d5b84feb3280622e9599e86247d58b0d18 inc/Module/Install/WriteAll.pm
-SHA1 173305a0dcbd3456cc6d7f6fb6c67e3b00249797 lib/RT/Action/ExtractCustomFieldValues.pm
+SHA1 2d63c199a6f31a7c1ec3ce5d73696cb45483a691 lib/RT/Action/ExtractCustomFieldValues.pm
 SHA1 35bfa9e18fd95282b04a519b1b4702984e5f4fe8 lib/RT/Action/ExtractCustomFieldValuesWithCodeInTemplate.pm
-SHA1 c5ab709c342589ce0e906281b924d973215174ff lib/RT/Extension/ExtractCustomFieldValues.pm
+SHA1 8625404565bf0a0a32ae2131bd228e903e07cbb4 lib/RT/Extension/ExtractCustomFieldValues.pm
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.11 (GNU/Linux)
 
-iD8DBQFR+H7mHdv9ZfNcOAcRAr83AJsFUoP8kjfhWhuG7xxuzKARqCoEFACfTJTm
-OLb5tL4Hec9dTd98fAjjh5E=
-=FHOY
+iEYEARECAAYFAlJNsVUACgkQMflWJZZAbqALmACgs029C0NF9pnrS3xlyNQTBuk8
+Q6EAoJ8uuZ9/IVTCwTSB0u/SmzOdFQLQ
+=cSBV
 -----END PGP SIGNATURE-----
