@@ -9,7 +9,7 @@ RT::Extension::ExtractCustomFieldValues - extract CF values from email headers o
 
 =cut
 
-our $VERSION = '3.12';
+our $VERSION = '3.13';
 
 1;
 
@@ -138,11 +138,9 @@ and further documentation.
 
 =head1 AUTHOR
 
-This extension was originally written by Dirk Pape
-E<lt>pape@inf.fu-berlin.deE<gt>.
+Best Practical Solutions, LLC E<lt>modules@bestpractical.comE<gt>
 
-It is now maintained by Best Practical Solutions, LLC
-E<lt>modules@bestpractical.comE<gt>
+Based on code by Dirk Pape E<lt>pape@inf.fu-berlin.deE<gt>.
 
 =head1 BUGS
 
